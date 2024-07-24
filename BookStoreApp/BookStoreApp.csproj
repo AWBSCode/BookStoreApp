@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{102FCF9E-E0EE-446B-9D4C-41BA51638C10}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>BookStoreApp</RootNamespace>
+    <AssemblyName>BookStoreApp</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminPanalFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFrm.Designer.cs">
+      <DependentUpon>AdminPanalFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanalFroms\DeleteUserFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFroms\DeleteUserFrm.Designer.cs">
+      <DependentUpon>DeleteUserFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanalFroms\EditUserFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFroms\EditUserFrm.Designer.cs">
+      <DependentUpon>EditUserFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanalFroms\FindUserFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFroms\FindUserFrm.Designer.cs">
+      <DependentUpon>FindUserFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ListUsersFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ListUsersFrm.Designer.cs">
+      <DependentUpon>ListUsersFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanalFroms\UsersListOptionsFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFroms\UsersListOptionsFrm.Designer.cs">
+      <DependentUpon>UsersListOptionsFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeFrm.Designer.cs">
+      <DependentUpon>HomeFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SignUpFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SignUpFrm.Designer.cs">
+      <DependentUpon>SignUpFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdminPanalFrm.resx">
+      <DependentUpon>AdminPanalFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanalFroms\DeleteUserFrm.resx">
+      <DependentUpon>DeleteUserFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanalFroms\EditUserFrm.resx">
+      <DependentUpon>EditUserFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanalFroms\FindUserFrm.resx">
+      <DependentUpon>FindUserFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanalFroms\ListUsersFrm.resx">
+      <DependentUpon>ListUsersFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanalFroms\UsersListOptionsFrm.resx">
+      <DependentUpon>UsersListOptionsFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeFrm.resx">
+      <DependentUpon>HomeFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="SignUpFrm.resx">
+      <DependentUpon>SignUpFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BussinessLayer\BussinessLayer.csproj">
+      <Project>{2a6c9952-6bdf-441c-b4ca-1e191bcccf87}</Project>
+      <Name>BussinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{5B536699-EA41-480E-B9F7-6EF164D6A21F}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
