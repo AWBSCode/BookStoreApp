@@ -100,6 +100,8 @@ namespace DataAccessLayer
             clsPerson newPerson = new clsPerson(-1, name, phone, password, email);
             int PersonID = newPerson.SaveNewPersonAndGetID();
             
+
+
             SqlConnection connection = new SqlConnection(setupConnection.ConnectionString);
             string query = @"INSERT INTO [dbo].[Users]
            ([PersonID])
