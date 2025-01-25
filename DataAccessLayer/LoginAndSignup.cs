@@ -97,11 +97,8 @@ namespace DataAccessLayer
 
         public static bool SignUserUp(string name, string phone, string password, string email)
         {
-            clsPerson newPerson = new clsPerson(-1, name, phone, password, email);
-            int PersonID = newPerson.SaveNewPersonAndGetID();
+            int insertedID = clsPerson.AddNewPerson(name, phone, password, email);
             
-
-
             SqlConnection connection = new SqlConnection(setupConnection.ConnectionString);
             string query = @"INSERT INTO [dbo].[Users]
            ([PersonID])
@@ -111,7 +108,7 @@ namespace DataAccessLayer
             SqlCommand command = new SqlCommand(query, connection);
             bool isInserted = false;
 
-            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@PersonID", insertedID);
 
             try
             {
@@ -134,10 +131,10 @@ namespace DataAccessLayer
             return isInserted;
         }
 
-        public static bool LoginAdmin(string Email, string Password)
+        public static int LoginAdmin(string Email, string Password)
         {
             SqlConnection connection = new SqlConnection(setupConnection.ConnectionString);
-            string query = @"SELECT  Found=1
+            string query = @"SELECT  AdminID
                             FROM   Admins INNER JOIN
                             Persons ON Admins.PersonID = Persons.PersonID
                             WHERE Email=@Email and Password=@Password";
@@ -146,7 +143,7 @@ namespace DataAccessLayer
             command.Parameters.AddWithValue("@Email", Email);
             command.Parameters.AddWithValue("@Password", Password);
 
-            bool isLogged = false;
+            int AdminID = -1;
 
             try
             {
@@ -155,7 +152,7 @@ namespace DataAccessLayer
                 
                 if (reader.Read())
                 {
-                    isLogged = true;
+                    AdminID = (int)reader["AdminID"];
                 }
                 reader.Close();
 
@@ -167,7 +164,7 @@ namespace DataAccessLayer
                 connection.Close();
             }
 
-            return isLogged;
+            return AdminID;
         }
 
     }

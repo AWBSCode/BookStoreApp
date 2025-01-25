@@ -9,43 +9,10 @@ using System.Xml.Linq;
 
 namespace DataAccessLayer
 {
-    public class clsPerson
+    static public class clsPerson
     {
-        enum enMode
-        {
-            AddNew,
-            Update
-        };
-
-        public int PersonId { get; set; }
-        public string Name { get; set; }
-        public string Phone { get; set; }
-        public string Email {  get; set; }
-        public string Password { get; set; }
-
-        private enMode _Mode = enMode.AddNew;
-
-        public clsPerson(int personId, string name, string phone, string email, string password)
-        {
-            PersonId = personId;
-            Name = name;
-            Phone = phone;
-            Email = email;
-            Password = password;
-
-            if (personId != -1)
-            {
-                _Mode = enMode.Update;
-            }
-
-        }
-
-        public clsPerson()
-        {
-            PersonId = -1;
-        }
-
-        static protected bool DeletePerson(int PersonId)
+      
+        static public bool DeletePerson(int PersonId)
         {
             SqlConnection connection = new SqlConnection(setupConnection.ConnectionString);
             string query = @"DELETE FROM [dbo].[Persons]
@@ -82,17 +49,7 @@ namespace DataAccessLayer
             return isDeleted;
         }
 
-        public bool DeletePerson()
-        {
-            if (_Mode == enMode.AddNew)
-            {
-                return false;
-            }
-
-            return DeletePerson(PersonId);
-        }
-
-        private bool _Update()
+        static public bool UpdatePesron(int PersonId, string Name, string Phone, string Password, string Email)
         {
             SqlConnection connection = new SqlConnection(setupConnection.ConnectionString);
             string query = @"
@@ -110,7 +67,7 @@ namespace DataAccessLayer
             command.Parameters.AddWithValue("@Email", Email);
             command.Parameters.AddWithValue("@ID", PersonId);
 
-            bool isUpdated = false;
+            /*bool isUpdated = false;
 
             try
             {
@@ -136,10 +93,12 @@ namespace DataAccessLayer
                 connection.Close();
             }
 
-            return isUpdated;
+            return isUpdated;*/
+
+            return CrudHelper.UpdateHelper(connection, command);
         }
 
-        private int _AddNew()
+        static public int AddNewPerson(string Name, string Phone, string Password, string Email)
         {
             SqlConnection connection = new SqlConnection(setupConnection.ConnectionString);
             string query = @"INSERT INTO [dbo].[Persons]
@@ -184,29 +143,36 @@ namespace DataAccessLayer
 
             return id;
         }
-
-        public bool SavePerson()
+        
+        static public int GetPersonID(int ID, string query)
         {
-            if (_Mode == enMode.AddNew)
+            SqlConnection connection = new SqlConnection(setupConnection.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ID", ID);
+            int PersonID = 0;
+
+            try
             {
-                return _AddNew() != -1;
-            } else if (_Mode == enMode.Update)
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+
+                if (result != null && int.TryParse(result.ToString(), out int FoundID))
+                {
+                    PersonID = FoundID;
+                }
+
+            }
+            catch (Exception ex)
             {
-                return _Update();
+
+            }
+            finally
+            {
+                connection.Close();
             }
 
-            return false;
+            return PersonID;
         }
-
-        public int SaveNewPersonAndGetID()
-        {
-            if (_Mode == enMode.AddNew)
-            {
-                return _AddNew();
-            } else
-            {
-                return -1;
-            }
-        } 
     }
 }

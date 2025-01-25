@@ -1,4 +1,4 @@
-﻿namespace BookStoreApp
+﻿namespace BookStoreApp.UserForms
 {
     partial class HomeFrm
     {
@@ -34,13 +34,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1159, 546);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "HomeFrm";
             this.Text = "HomeFrm";
+            this.Load += new System.EventHandler(this.HomeFrm_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
     }
 }

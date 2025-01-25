@@ -7,56 +7,18 @@ using System.Linq;
 
 namespace DataAccessLayer
 {
-    public class clsUser : clsPerson
+    public class clsUser 
     {
-        public int UserID { get; set; }
-
-        clsUser(int userID, int personId, string name, string phone, string email, string password)
-            : base(personId, name, phone, email, password )
+        static public DataTable GetAllUsers()
         {
-            UserID = userID;
-        }
-
-        clsUser()
-        {
-            UserID = -1;
-        }
-
-        
-        static protected DataTable GetAllUsers()
-        {
-            SqlConnection connection = new SqlConnection(setupConnection.ConnectionString);
             string query = @"SELECT        Users.UserID, Users.PersonID, Persons.Name, Persons.Phone, Persons.Password, Persons.email
             FROM            Persons INNER JOIN
                                      Users ON Persons.PersonID = Users.PersonID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-            DataTable usersTable = new DataTable();
-
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    usersTable.Load(reader);
-                }
-
-                reader.Close();
-
-            } catch (Exception ex)
-            {
-
-            } finally
-            {
-                connection.Close();
-            }
-
-            return usersTable;
+            
+            return CrudHelper.GetAllHelper(query);
         }
 
-        static protected clsUser FindUserByID(int ID)
+        static public void FindUserByID(int UserID, ref int PersonID, ref string Name, ref string Phone, ref string Password, ref string Email)
         {
             SqlConnection connection = new SqlConnection(setupConnection.ConnectionString);
             string query = @"SELECT        Users.UserID, Persons.*
@@ -64,8 +26,8 @@ namespace DataAccessLayer
                                      Users ON Persons.PersonID = Users.PersonID
 						            WHERE Users.UserID=@ID";
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@ID", ID);
-            clsUser FoundUser = new clsUser();
+            command.Parameters.AddWithValue("@ID", UserID);
+            
 
             try
             {
@@ -74,12 +36,11 @@ namespace DataAccessLayer
 
                 if (reader.Read())
                 {
-                    FoundUser.UserID = ID;
-                    FoundUser.PersonId = (int)reader["PersonID"];
-                    FoundUser.Name = (string)reader["Name"];
-                    FoundUser.Phone = (string)reader["Phone"];
-                    FoundUser.Password = (string)reader["Password"];
-                    FoundUser.Email = (string)reader["Email"];
+                    PersonID = (int)reader["PersonID"];
+                    Name = (string)reader["Name"];
+                    Phone = (string)reader["Phone"];
+                    Password = (string)reader["Password"];
+                    Email = (string)reader["Email"];
 
                 }
                 reader.Close();
@@ -92,116 +53,60 @@ namespace DataAccessLayer
                 connection.Close();
             }
 
-            return FoundUser;
+            
         }
 
-        static private bool DeleteUserRecord(int UserID)
+        // can be extracted to cls person
+        static public int FindPersonIDFromUserID(int UserID)
         {
             SqlConnection connection = new SqlConnection(setupConnection.ConnectionString);
-            string query = @"DELETE FROM [dbo].[Users]
-              WHERE UserID = @ID";
+            string query = @"SELECT PersonID from Users
+						            WHERE UserID=@ID";
             SqlCommand command = new SqlCommand(query, connection);
-
             command.Parameters.AddWithValue("@ID", UserID);
-            bool isDeleted = false;
+            int PersonID = 0;
 
             try
             {
                 connection.Open();
-                int rows = (int)command.ExecuteNonQuery();
+                object result = command.ExecuteScalar();
 
-                if (rows > 0)
+
+                if (result != null && int.TryParse(result.ToString(), out int FoundID))
                 {
-                    isDeleted = true;
-                }
-                else
-                {
-                    isDeleted = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                isDeleted = false;
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return isDeleted;
-        }
-
-        static protected bool DeleteUserByID(int UserID)
-        {
-            int PersonID = FindUserByID(UserID).PersonId;
-            return DeleteUserRecord(UserID) && DeletePerson(PersonID);
-        } 
-
-        protected bool DeleteUser()
-        {
-            return DeleteUserByID(UserID);
-        }
-
-        protected bool UpdateUser(clsUser User)
-        {
-            clsPerson person = (clsPerson)User;
-            if (person.PersonId == PersonId)
-            {
-                return person.SavePerson();
-            }
-
-           return false;
-        }
-
-        /*
-
-
-        static private bool UpdatePerson(int PersonID, string Name, string Email, string Phone, string  Password)
-        {
-            SqlConnection connection = new SqlConnection(setupConnection.ConnectionString);
-            string query = @"
-            UPDATE [dbo].[Persons]
-               SET [Name] = @Name
-                  ,[Phone] = @Phone
-                  ,[Password] = @Password
-                  ,[email] = @Email
-             WHERE PersonID=@ID";
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@Name", Name);
-            command.Parameters.AddWithValue("@Phone", Phone);
-            command.Parameters.AddWithValue("@Password", Password);
-            command.Parameters.AddWithValue("@Email", Email);
-            command.Parameters.AddWithValue("@ID", PersonID);
-
-            bool isUpdated = false;
-
-            try
-            {
-                connection.Open();
-                int rows = (int)command.ExecuteNonQuery();
-
-                if (rows > 0)
-                {
-                    isUpdated = true;
-                } else
-                {
-                    isUpdated = false;
+                    PersonID = FoundID;
                 }
 
             } catch(Exception ex)
             {
-                isUpdated = false;
+
             } finally
             {
                 connection.Close();
             }
 
-            return isUpdated;
+            return PersonID;
         }
 
+        static private bool DeleteUserRecord(int UserID)
+        {
+            string query = @"DELETE FROM [dbo].[Users]
+              WHERE UserID = @ID";
+            return CrudHelper.DeleteHelper(UserID, query);
+        }
+
+        static public bool DeleteUserByID(int UserID)
+        {
+            int PersonId = FindPersonIDFromUserID(UserID);
+            return DeleteUserRecord(UserID) && clsPerson.DeletePerson(PersonId);
+        }
+
+       static public bool UpdateUser(int userID, string Name, string Phone, string Password, string Email)
+       {
+            int PersonId = FindPersonIDFromUserID(userID); 
+            return clsPerson.UpdatePesron(PersonId, Name, Phone, Password, Email);
+       }
+
         
-        */
     }
 }

@@ -11,6 +11,8 @@ namespace BussinessLayer
 {
     public static class clsLoginAndSignupBussinessLayer
     {
+        public static int CurrentAdminID;
+
         public static bool LoginUser(string Email, string Password)
         {
             return clsLoginAndSignupDataAccess.LoginUser(Email, Password);
@@ -20,13 +22,10 @@ namespace BussinessLayer
             return clsLoginAndSignupDataAccess.SignUserUp(name, phone, password, email);
         }
 
-        public static int GetInsertedPersonID(string name, string phone, string password, string email) {
-            return clsLoginAndSignupDataAccess.InsertPersonAndGetID(name, phone, password, email);
-        }
-
         public static bool LoginAdmin(string Email, string Password)
         {
-            return clsLoginAndSignupDataAccess.LoginAdmin(Email, Password);
+            CurrentAdminID = clsLoginAndSignupDataAccess.LoginAdmin(Email, Password);
+            return CurrentAdminID != -1;
         }
     }
 }

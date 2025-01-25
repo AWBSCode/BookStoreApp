@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Toolkit">
+      <HintPath>D:\Krypton-master\Bin\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI2, Version=2.0.4.6, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.6\lib\net48\Guna.UI2.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,41 +61,89 @@
     <Compile Include="AdminPanalFrm.Designer.cs">
       <DependentUpon>AdminPanalFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminPanalFroms\DeleteUserFrm.cs">
+    <Compile Include="AdminPanalFroms\ConrolUsers\EditUserFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminPanalFroms\DeleteUserFrm.Designer.cs">
-      <DependentUpon>DeleteUserFrm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPanalFroms\EditUserFrm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminPanalFroms\EditUserFrm.Designer.cs">
+    <Compile Include="AdminPanalFroms\ConrolUsers\EditUserFrm.Designer.cs">
       <DependentUpon>EditUserFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminPanalFroms\FindUserFrm.cs">
+    <Compile Include="AdminPanalFroms\ConrolUsers\FindUserFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminPanalFroms\FindUserFrm.Designer.cs">
+    <Compile Include="AdminPanalFroms\ConrolUsers\FindUserFrm.Designer.cs">
       <DependentUpon>FindUserFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminPanalFroms\ListUsersFrm.cs">
+    <Compile Include="AdminPanalFroms\ConrolUsers\UsersControlPanelFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminPanalFroms\ListUsersFrm.Designer.cs">
-      <DependentUpon>ListUsersFrm.cs</DependentUpon>
+    <Compile Include="AdminPanalFroms\ConrolUsers\UsersControlPanelFrm.Designer.cs">
+      <DependentUpon>UsersControlPanelFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminPanalFroms\UsersListOptionsFrm.cs">
+    <Compile Include="AdminPanalFroms\ControlAdmins\AdminControlFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminPanalFroms\UsersListOptionsFrm.Designer.cs">
-      <DependentUpon>UsersListOptionsFrm.cs</DependentUpon>
+    <Compile Include="AdminPanalFroms\ControlAdmins\AdminControlFrm.Designer.cs">
+      <DependentUpon>AdminControlFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HomeFrm.cs">
+    <Compile Include="AdminPanalFroms\ControlAdmins\EditAdminFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HomeFrm.Designer.cs">
-      <DependentUpon>HomeFrm.cs</DependentUpon>
+    <Compile Include="AdminPanalFroms\ControlAdmins\EditAdminFrm.Designer.cs">
+      <DependentUpon>EditAdminFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlAdmins\FindAdminFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlAdmins\FindAdminFrm.Designer.cs">
+      <DependentUpon>FindAdminFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\Authors\AddAuthorFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\Authors\AddAuthorFrm.Designer.cs">
+      <DependentUpon>AddAuthorFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\Authors\AuthorsPanelFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\Authors\AuthorsPanelFrm.Designer.cs">
+      <DependentUpon>AuthorsPanelFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\Authors\EditAuthoFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\Authors\EditAuthoFrm.Designer.cs">
+      <DependentUpon>EditAuthoFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\Authors\FindAuthorFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\Authors\FindAuthorFrm.Designer.cs">
+      <DependentUpon>FindAuthorFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\BooksListOptionsFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\BooksListOptionsFrm.Designer.cs">
+      <DependentUpon>BooksListOptionsFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\EditBookFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\EditBookFrm.Designer.cs">
+      <DependentUpon>EditBookFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\FindBookFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanalFroms\ControlBooksAndAuthors\FindBookFrm.Designer.cs">
+      <DependentUpon>FindBookFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingFrm.Designer.cs">
+      <DependentUpon>LoadingFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="SignUpFrm.cs">
       <SubType>Form</SubType>
@@ -96,26 +153,57 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserForms\HomeFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserForms\HomeFrm.Designer.cs">
+      <DependentUpon>HomeFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="util\UtilActions.cs" />
     <EmbeddedResource Include="AdminPanalFrm.resx">
       <DependentUpon>AdminPanalFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminPanalFroms\DeleteUserFrm.resx">
-      <DependentUpon>DeleteUserFrm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AdminPanalFroms\EditUserFrm.resx">
+    <EmbeddedResource Include="AdminPanalFroms\ConrolUsers\EditUserFrm.resx">
       <DependentUpon>EditUserFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminPanalFroms\FindUserFrm.resx">
+    <EmbeddedResource Include="AdminPanalFroms\ConrolUsers\FindUserFrm.resx">
       <DependentUpon>FindUserFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminPanalFroms\ListUsersFrm.resx">
-      <DependentUpon>ListUsersFrm.cs</DependentUpon>
+    <EmbeddedResource Include="AdminPanalFroms\ConrolUsers\UsersControlPanelFrm.resx">
+      <DependentUpon>UsersControlPanelFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminPanalFroms\UsersListOptionsFrm.resx">
-      <DependentUpon>UsersListOptionsFrm.cs</DependentUpon>
+    <EmbeddedResource Include="AdminPanalFroms\ControlAdmins\AdminControlFrm.resx">
+      <DependentUpon>AdminControlFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HomeFrm.resx">
-      <DependentUpon>HomeFrm.cs</DependentUpon>
+    <EmbeddedResource Include="AdminPanalFroms\ControlAdmins\EditAdminFrm.resx">
+      <DependentUpon>EditAdminFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanalFroms\ControlAdmins\FindAdminFrm.resx">
+      <DependentUpon>FindAdminFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanalFroms\ControlBooksAndAuthors\Authors\AddAuthorFrm.resx">
+      <DependentUpon>AddAuthorFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanalFroms\ControlBooksAndAuthors\Authors\AuthorsPanelFrm.resx">
+      <DependentUpon>AuthorsPanelFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanalFroms\ControlBooksAndAuthors\Authors\EditAuthoFrm.resx">
+      <DependentUpon>EditAuthoFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanalFroms\ControlBooksAndAuthors\Authors\FindAuthorFrm.resx">
+      <DependentUpon>FindAuthorFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanalFroms\ControlBooksAndAuthors\BooksListOptionsFrm.resx">
+      <DependentUpon>BooksListOptionsFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanalFroms\ControlBooksAndAuthors\EditBookFrm.resx">
+      <DependentUpon>EditBookFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanalFroms\ControlBooksAndAuthors\FindBookFrm.resx">
+      <DependentUpon>FindBookFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingFrm.resx">
+      <DependentUpon>LoadingFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -125,10 +213,15 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SignUpFrm.resx">
       <DependentUpon>SignUpFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserForms\HomeFrm.resx">
+      <DependentUpon>HomeFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -151,6 +244,45 @@
       <Project>{5B536699-EA41-480E-B9F7-6EF164D6A21F}</Project>
       <Name>DataAccessLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Default_flying_books_in_a_book_store_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Default_flying_books_in_a_book_store_2_V1.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5879639482255393512.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Default_arranging_books_to_make_a_fancy_book_tower_in_the_nigh_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Default_network_of_connected_users_0.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Default_network_of_connected_users_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Default_readers_read_books_in_a_fancy_library_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Default_the_people_are_reading_in_fancy_neon_library_0.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Default_25yearold_boy_is_a_cahier_in_fancy_neon_bookstore_0.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Default_arranged_books_in_a_neon_bookstore_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\121a060d-0b33-4afd-9278-f36a05bb4663 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\121a060d-0b33-4afd-9278-f36a05bb4663 %284%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\121a060d-0b33-4afd-9278-f36a05bb4663 %282%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

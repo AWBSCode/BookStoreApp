@@ -14,9 +14,10 @@ namespace BookStoreApp
         [STAThread]
         static void Main()
         {
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SignUpFrm());
+            Application.Run(new LoadingFrm());
         }
     }
 }
